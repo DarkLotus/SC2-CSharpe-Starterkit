@@ -26,7 +26,9 @@ namespace Bot
         {
             ProcessStartInfo processStartInfo = new ProcessStartInfo(starcraftExe);
             processStartInfo.Arguments = String.Format("-listen {0} -port {1} -displayMode 0", address, port);
-            processStartInfo.WorkingDirectory = Path.Combine(starcraftDir, "Support64");
+            //Folder does not exist on linux
+            if (starcraftExe.Contains(".exe"))
+                processStartInfo.WorkingDirectory = Path.Combine(starcraftDir, "Support64");
             Logger.Info("Launching SC2:");
             Logger.Info("--> File: {0}", starcraftExe);
             Logger.Info("--> Working Dir: {0}", processStartInfo.WorkingDirectory);
@@ -57,7 +59,7 @@ namespace Bot
             RequestCreateGame createGame = new RequestCreateGame();
             createGame.Realtime = false;
 
-            string mapPath = Path.Combine(starcraftDir, "maps", mapName);
+            string mapPath = Path.Combine(starcraftDir, "Maps", mapName);
             if (!File.Exists(mapPath)) {
                 Logger.Info("Unable to locate map: " + mapPath);
                 throw new Exception("Unable to locate map: " + mapPath);
