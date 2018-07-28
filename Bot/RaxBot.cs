@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Resources;
