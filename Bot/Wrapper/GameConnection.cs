@@ -193,13 +193,13 @@ namespace Bot
                 Request observationRequest = new Request();
                 observationRequest.Observation = new RequestObservation();
                 Response response = await proxy.SendRequest(observationRequest);
-
+                if ( response.Observation == null )
+                    continue;
                 ResponseObservation observation = response.Observation;
 
                 if (response.Status == Status.Ended || response.Status == Status.Quit)
                     break;
-                
-                IEnumerable<SC2APIProtocol.Action> actions = bot.OnFrame(observation, playerId);
+                 IEnumerable<SC2APIProtocol.Action> actions = bot.OnFrame(observation, playerId);
 
                 Request actionRequest = new Request();
                 actionRequest.Action = new RequestAction();
