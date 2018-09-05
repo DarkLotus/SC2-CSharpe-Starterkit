@@ -60,6 +60,10 @@ namespace Bot
 
         public IEnumerable<SC2APIProtocol.Action> OnFrame(ResponseObservation obs, uint playerId)
         {
+            //Invalid obs wait for fresh data.
+            if(obs == null )
+                return new List<SC2APIProtocol.Action>();
+
             controller.OpenFrame(gameInfo, obs);
 
             if (controller.frame == 0) {
